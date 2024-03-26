@@ -13,8 +13,10 @@ DHT dht(DHTTYPE);         //   DHT10 DHT20 don't need to define Pin
 
 // const char* ssid = "OpenWrt-H68K";
 // const char* password = "00000000";
-const char* ssid = "Xiaomi_BACF";
-const char* password = "Jiang15248193599";
+const char* ssid = "OnePlus 7Pro";
+const char* password = "00000000";
+// const char* ssid = "Xiaomi_BACF";
+// const char* password = "Jiang15248193599";
 
 //store temp and humi data
 float h;
@@ -55,13 +57,13 @@ void loop() {
   //get temperature and humi data
     h = dht.readHumidity();
     t = dht.readTemperature();
-    Serial.println("T&H: ");
-    Serial.println(h);
-    Serial.println(t);
+    // Serial.println("T&H: ");
+    // Serial.println(h);
+    // Serial.println(t);
 
   // Call your custom function here
   float inference = postData(h, t);
-  if(inference>7.1){
+  if(inference>7.2){
     digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
     delay(5000);                      // wait for a second
     digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
@@ -69,7 +71,7 @@ void loop() {
   }
 
   // Add some delay between HTTP requests
-  delay(10000); // 10 seconds
+  delay(3000); // 10 seconds
 }
 
 float postData(float value1, float value2) {
